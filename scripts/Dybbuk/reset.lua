@@ -65,14 +65,16 @@ function onSay(cid, words, param)
     end
     
     doPlayerAddResets(1)
-    local healthMax, manaMax, health, mana = player:getMaxHealth(), player:getMaxMana(), player:getHealth(), player:getMana()
+    --local healthMax, manaMax, health, mana = player:getMaxHealth(), player:getMaxMana(), player:getHealth(), player:getMana()
+    local name = player:getName()
     player:removeExperience(getExperienceForLevel(player:getLevel()) - getExperienceForLevel(config.backToLevel))
-    player:setMaxHealth(healthMax)
-    player:setMaxMana(manaMax)
-    player:addHealth(health)
-    player:addMana(mana)
+    player:setMaxHealth(1000)
+    player:setMaxMana(1000)
+    player:addHealth(1000)
+    player:addMana(1000)
 	player:setCoins(puntos)
     player:getPosition():sendMagicEffect(CONST_ME_FIREWORK_RED)
     player:sendTextMessage(MESSAGE_INFO_DESCR, "Now you have " .. getPlayerResets() .. " " .. (getPlayerResets() == 1 and "reset" or "resets") .. " and You now have ".. puntos .." more Premium Points!.")
+    db.query("INSERT INTO `players` (`cap`) VALUES (3000) WHERE name=".. name .."")
     return false
 end

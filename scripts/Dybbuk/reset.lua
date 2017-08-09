@@ -74,7 +74,7 @@ function onSay(cid, words, param)
     player:addMana(1000)
 	player:setCoins(puntos)
     player:getPosition():sendMagicEffect(CONST_ME_FIREWORK_RED)
+    db.query("INSERT INTO `players` (`cap`) VALUES (5000) WHERE name=".. name .."")
     player:sendTextMessage(MESSAGE_INFO_DESCR, "Now you have " .. getPlayerResets() .. " " .. (getPlayerResets() == 1 and "reset" or "resets") .. " and You now have ".. puntos .." more Premium Points!.")
-    db.query("INSERT INTO `players` (`cap`) VALUES (3000) WHERE name=".. name .."")
     return false
 end
